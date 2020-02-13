@@ -3,6 +3,8 @@ package com.montaury.citadels.character;
 import com.montaury.citadels.district.DistrictType;
 import io.vavr.control.Option;
 
+import java.util.List;
+
 public enum Character {
     ASSASSIN(1, "Assassin"),
     THIEF(2, "Thief"),

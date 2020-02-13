@@ -5,6 +5,7 @@ import com.montaury.citadels.player.Player;
 import io.vavr.collection.HashSet;
 import io.vavr.collection.Set;
 import io.vavr.control.Option;
+import io.vavr.collection.List;
 
 public class Group {
 

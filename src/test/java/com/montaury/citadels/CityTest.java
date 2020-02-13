@@ -6,14 +6,15 @@ import com.montaury.citadels.player.HumanController;
 import com.montaury.citadels.player.Player;
 import io.vavr.collection.HashMap;
 import io.vavr.collection.HashSet;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
+
 
 import io.vavr.collection.Set;
+import org.junit.Test;
+
 
 import static com.montaury.citadels.district.Card.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class CityTest {
 
