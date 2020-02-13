@@ -92,7 +92,8 @@ public class Citadels {
             for (int iii = 0; iii < 8; iii++) {
                 for (int ii = 0; ii < associations.size(); ii++) {
                     if (iii + 1 == associations.get(ii).character.number()) {
-                        if (associations.get(ii).isMurdered()) {}else{
+                        if (associations.get(ii).isMurdered()) {}
+                        else{
                             Group group = associations.get(ii);
                             associations.get(ii).thief().peek(thief -> thief.steal(group.player()));
                             Set<String> baseActions = HashSet.of("Draw 2 cards and keep 1", "Receive 2 coins");
@@ -142,11 +143,11 @@ public class Citadels {
                                 group.player().add(cardsDrawn);
                             }
                             actionExecuted(group, actionType, associations);
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             // receive powers from the character
                             List<String> powers = null;
                             Power::receivePowers(group, powers);
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             List<String>  extraActions = List.empty();
                             for (District d : group.player().city().districts()) {
                                 if (d == District.SMITHY) {
