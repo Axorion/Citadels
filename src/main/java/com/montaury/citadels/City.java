@@ -11,7 +11,7 @@ import static com.montaury.citadels.district.District.GREAT_WALL;
 import static com.montaury.citadels.district.District.HAUNTED_CITY;
 
 public class City {
-    private static final int END_GAME_DISTRICT_NUMBER = 8;
+    private static final int END_GAME_DISTRICT_NUMBER = 7;
     private final Board board;
     private List<Card> districtCards = List.empty();
 
@@ -30,39 +30,51 @@ public class City {
         return districtCards.size() >= END_GAME_DISTRICT_NUMBER;
     }
 
-    public int score(Possession possession) {
-        int score = 0;
-        for (int a = 0; a < districts().size(); a++) {
-            score += districts().get(a).cost();
-        }
+    public int calculScore(Possession possession) {
+        int score = calculCoutDistricts()
+                  + calculScoreBonus(possession);
 
-        score = score + districtsScoreBonus(possession);
+        return score;
+    }
+
+    public int calculCoutDistricts(){
+        int cout = 0;
+        for (int district = 0; district < districts().size(); district++) {
+            cout += districts().get(district).cost();
+        }
+        return cout;
+    }
+
+    public int calculScoreBonus(Possession possession){
+        int scoreBonus = 0;
+        scoreBonus += districtsScoreBonus(possession);
         if (winsAllColorBonus()) {
-            score += 5;
+            scoreBonus += 3;
         }
         if (board.isFirst(this)) {
-            score += (2);
+            scoreBonus += 2;
         }
         if (isComplete()) {
-            score += (2);
+            scoreBonus += 2;
         }
-        return score;
+        return scoreBonus;
+
     }
 
     private int districtsScoreBonus(Possession possession) {
         int score = 0;
         for (District d : districts()) {
             if (d == District.DRAGON_GATE) {
-                score = score + 2;
+                score += 2;
             }
             if (d == District.UNIVERSITY) {
-                score = score + 2;
+                score += 2;
             }
             if (d == District.TREASURY) {
-                score += score + possession.gold;
+                score += possession.gold;
             }
             if (d == District.MAP_ROOM) {
-                score += possession.hand.size();
+                score += possession.cardsInHandCount();
             }
         }
         return score;
