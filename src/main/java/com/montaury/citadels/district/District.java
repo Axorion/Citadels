@@ -2,6 +2,7 @@ package com.montaury.citadels.district;
 
 import com.montaury.citadels.Possession;
 import com.montaury.citadels.character.Character;
+import com.montaury.citadels.player.Player;
 import io.vavr.control.Option;
 
 import static com.montaury.citadels.district.DistrictType.*;

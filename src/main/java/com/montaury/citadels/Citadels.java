@@ -146,7 +146,6 @@ public class Citadels {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             // receive powers from the character
                             List<String> powers = group.character().getPowers();
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             List<String>  extraActions = List.empty();
                             for (District d : group.player().city().districts()) {
@@ -261,8 +260,10 @@ public class Citadels {
                                         }
                                     }
                                     }
-                                else if (actionType1 == "Destroy district") {
-                                    // flemme...
+                                else if (actionType1 == "Destroy district") {/*
+                                    City cityToDestroy = LA_CITY_CHOISIS
+                                    LA_CITY_CHOISIS.districtDestructibleBy()*/
+
                                 }
                                     else if (actionType1 == "Rob") {
                                     Character character = group.player().controller.selectAmong(List.of(Character.MAGICIAN, Character.KING, Character.BISHOP, Character.MERCHANT, Character.ARCHITECT, Character.WARLORD)
@@ -307,12 +308,12 @@ public class Citadels {
         System.out.println();
     }
 
-    private static String textCity(Player player) {
+    public static String textCity(Player player) {
         List<District> districts = player.city().districts();
         return districts.isEmpty() ? "Empty" : districts.map(Citadels::textDistrict).mkString(", ");
     }
 
-    private static String textDistrict(District district) {
+    public static String textDistrict(District district) {
         return district.name() + "(" + district.districtType().name() + ", " + district.cost() + ")";
     }
 
