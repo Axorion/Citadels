@@ -9,24 +9,25 @@ public enum Character {
     ASSASSIN(1, "Assassin", List.of("Kill")),
     THIEF(2, "Thief", List.of("Rob")),
     MAGICIAN(3, "Magician", List.of("Exchange cards with ohter player", "Exchange cards with pile")),
-    KING(4, "King", DistrictType.NOBLE, List.of("Receive income")),
-    BISHOP(5, "Bishop", DistrictType.RELIGIOUS, List.of("Receive income")),
-    MERCHANT(6, "Merchant", DistrictType.TRADE, List.of("Receive income", "Receive one gold")),
+    KING(4, "King",  List.of("Receive income"), DistrictType.NOBLE),
+    BISHOP(5, "Bishop", List.of("Receive income"), DistrictType.RELIGIOUS),
+    MERCHANT(6, "Merchant", List.of("Receive income", "Receive one gold"), DistrictType.TRADE),
     ARCHITECT(7, "Architect", List.of("Pick 2 cards", "build district", "Build district")),
-    WARLORD(8, "Warlord", DistrictType.MILITARY, List.of("Receive income", "Destroy district"));
+    WARLORD(8, "Warlord", List.of("Receive income", "Destroy district"), DistrictType.MILITARY);
 
-    Character(int number, String name)
+    Character(int number, String name, List<String> powers)
     {
-        this(number, name, null);
+        this(number, name, powers, null);
     }
 
-    Character(int number, String name, DistrictType associatedDistrictType, List<String> powers)
+    Character(int number, String name,  List<String> powers, DistrictType associatedDistrictType)
     {
         this.number = number;
         this.name = name;
         this.associatedDistrictType = Option.of(associatedDistrictType);
         this.powers = powers;
     }
+
 
     public int number() {
         return number;
@@ -39,6 +40,8 @@ public enum Character {
     public Option<DistrictType> associatedDistrictType() {
         return associatedDistrictType;
     }
+
+    public List<String> getPowers(){return powers;}
 
     private final int number;
     private final String name;

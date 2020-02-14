@@ -1,7 +1,7 @@
 package com.montaury.citadels;
 
 import com.montaury.citadels.character.Character;
-import com.montaury.citadels.character.Power;
+
 import com.montaury.citadels.character.RandomCharacterSelector;
 import com.montaury.citadels.district.Card;
 import com.montaury.citadels.district.DestructibleDistrict;
@@ -145,8 +145,8 @@ public class Citadels {
                             actionExecuted(group, actionType, associations);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             // receive powers from the character
-                            List<String> powers = null;
-                            Power::receivePowers(group, powers);
+                            List<String> powers = group.character().getPowers();
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             List<String>  extraActions = List.empty();
                             for (District d : group.player().city().districts()) {

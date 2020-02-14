@@ -9,79 +9,82 @@ import io.vavr.collection.HashSet;
 
 
 import io.vavr.collection.Set;
+import org.junit.Before;
 import org.junit.Test;
 
 
 import static com.montaury.citadels.district.Card.*;
 import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
+public class CityTest {
+    public Board board;
+    public City firstCity;
 
-class CityTest {
+    @Before
+    public void setUp(){
+        board = new Board();
+        firstCity = new City(board);
+
+    }
 
     @Test
-    public void FirstToEndWith7Districts(){
-        Board board = new Board();
-        City testCity = new City(board);
+    public void first_to_end_with_7_districts(){
         Possession possession= new Possession(0,null);
 
-        testCity.buildDistrict(MANOR_1); //NOBLE - 3
-        testCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        testCity.buildDistrict(PRISON_1); //MILITARY - 2
-        testCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        testCity.buildDistrict(PALACE_1); //NOBLE - 5
-        testCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
-        testCity.buildDistrict(BATTLEFIELD_1); //MILITARY - 3
+        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
+        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
+        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
+        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
+        firstCity.buildDistrict(PALACE_1); //NOBLE - 5
+        firstCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
+        firstCity.buildDistrict(BATTLEFIELD_1); //MILITARY - 3
         //end Value : 23
 
-        int actualValue = testCity.calculScore(possession);
+        int actualValue = firstCity.calculScore(possession);
 
         // AND BONUS : +4(First)
         int expectedValue = 27;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     @Test
-    public void FirstToEndWith8Districts(){
-        Board board = new Board();
-        City testCity = new City(board);
+    public void first_to_end_with_8_districts(){
         Possession possession= new Possession(0,null);
 
-        testCity.buildDistrict(MANOR_1); //NOBLE - 3
-        testCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        testCity.buildDistrict(PRISON_1); //MILITARY - 2
-        testCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        testCity.buildDistrict(PALACE_1); //NOBLE - 5
-        testCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
-        testCity.buildDistrict(BATTLEFIELD_1); //MILITARY - 3
-        testCity.buildDistrict(DOCKS_1); //TRADE - 3
+        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
+        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
+        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
+        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
+        firstCity.buildDistrict(PALACE_1); //NOBLE - 5
+        firstCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
+        firstCity.buildDistrict(BATTLEFIELD_1); //MILITARY - 3
+        firstCity.buildDistrict(DOCKS_1); //TRADE - 3
         //end Value : 26
 
-        int actualValue = testCity.calculScore(possession);
+        int actualValue = firstCity.calculScore(possession);
 
         // AND BONUS : +4 (First)
         int expectedValue = 30;
 
-        assertEquals(expectedValue, actualValue);
-    }
+        assertThat(actualValue).isEqualTo(expectedValue);    }
 
 
     @Test
-    public void FirstToEndWith7DistrictsAnd5DifferentsDistricts(){
-        Board board = new Board();
-        City testCity = new City(board);
+    public void first_to_end_with_7_districts_and_5_differents_districts(){
         Possession possession= new Possession(0,null);
 
-        testCity.buildDistrict(MANOR_1); //NOBLE - 3
-        testCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        testCity.buildDistrict(TAVERN_1); //TRADE - 1
-        testCity.buildDistrict(TEMPLE_1); //RELIGIOUS - 1
-        testCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        testCity.buildDistrict(PRISON_1); //MILITARY - 2
-        testCity.buildDistrict(KEEP_1); //SPECIAL - 3
+        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
+        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
+        firstCity.buildDistrict(TAVERN_1); //TRADE - 1
+        firstCity.buildDistrict(TEMPLE_1); //RELIGIOUS - 1
+        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
+        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
+        firstCity.buildDistrict(KEEP_1); //SPECIAL - 3
         //end Value : 19
 
-        int actualValue = testCity.calculScore(possession);
+        int actualValue = firstCity.calculScore(possession);
 
         // AND BONUS : +3 (5DifferentTypes) + 4(First)
         int expectedValue = 26;
@@ -90,33 +93,29 @@ class CityTest {
     }
 
     @Test
-    public void FirstToEndWith8DistrictsAnd5DifferentsDistricts(){
-        Board board = new Board();
-        City testCity = new City(board);
+    public void first_to_end_with_8_districts_and_5_differents_districts(){
         Possession possession= new Possession(0,null);
 
-        testCity.buildDistrict(MANOR_1); //NOBLE - 3
-        testCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        testCity.buildDistrict(TAVERN_1); //TRADE - 1
-        testCity.buildDistrict(TEMPLE_1); //RELIGIOUS - 1
-        testCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        testCity.buildDistrict(PRISON_1); //MILITARY - 2
-        testCity.buildDistrict(KEEP_1); //SPECIAL - 3
-        testCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
+        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
+        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
+        firstCity.buildDistrict(TAVERN_1); //TRADE - 1
+        firstCity.buildDistrict(TEMPLE_1); //RELIGIOUS - 1
+        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
+        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
+        firstCity.buildDistrict(KEEP_1); //SPECIAL - 3
+        firstCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
         //end Value : 20
 
-        int actualValue = testCity.calculScore(possession);
+        int actualValue = firstCity.calculScore(possession);
 
         // AND BONUS : +3 (5DifferentTypes) + 4(First)
         int expectedValue = 27;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     @Test
-    public void EndWith7Districts(){
-        Board board = new Board();
-        City firstCity = new City(board);
+    public void end_with_7_districts(){
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
@@ -142,13 +141,11 @@ class CityTest {
         // AND BONUS : 2 (complete)
         int expectedValue = 23;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     @Test
-    public void EndWith5DifferentsDistricts(){
-        Board board = new Board();
-        City firstCity = new City(board);
+    public void end_with_5_differents_districts(){
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
@@ -172,13 +169,11 @@ class CityTest {
         // AND BONUS : +3 (5DifferentTypes)
         int expectedValue = 16;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     @Test
-    public void EndWithDragonGate(){
-        Board board = new Board();
-        City firstCity = new City(board);
+    public void end_with_dragon_gate(){
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
@@ -198,13 +193,11 @@ class CityTest {
         // AND BONUS : +2 (dragonGate Effect)
         int expectedValue = 8;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     @Test
-    public void EndWithUniversity(){
-        Board board = new Board();
-        City firstCity = new City(board);
+    public void end_with_university(){
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
@@ -224,17 +217,15 @@ class CityTest {
         // AND BONUS : +2 (university Effect)
         int expectedValue = 8;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     @Test
-    public void EndWithMapRoom(){
-        Board board = new Board();
-        City firstCity = new City(board);
+    public void end_with_map_room(){
         City secondCity = new City(board);
         Set<Card> testHand = HashSet.empty();
-        testHand.add(MANOR_2);
-        testHand.add(MANOR_3);
+        testHand= testHand.add(MANOR_2);
+        testHand= testHand.add(MANOR_3);
 
         Possession possession= new Possession(0,testHand);
 
@@ -254,16 +245,13 @@ class CityTest {
         // AND BONUS : +2 (cards in hand)
         int expectedValue = 7;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
 
     @Test
-    public void EndWithTreasury(){
-        Board board = new Board();
-        City firstCity = new City(board);
+    public void end_with_treasury(){
         City secondCity = new City(board);
-
         Possession possession= new Possession(5,null);
 
         firstCity.buildDistrict(MANOR_1);
@@ -283,7 +271,7 @@ class CityTest {
         // AND BONUS : +5 (golds in hand)
         int expectedValue = 12;
 
-        assertEquals(expectedValue, actualValue);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
 }
