@@ -132,7 +132,7 @@ public class City {
                         .map(card -> new DestructibleDistrict(card, destructionCost(card)));
     }
 
-    private int destructionCost(Card card) {
+    public int destructionCost(Card card) {
         return card.district().cost() - (has(GREAT_WALL) && card.district() != GREAT_WALL ? 0 : (1));
     }
 
