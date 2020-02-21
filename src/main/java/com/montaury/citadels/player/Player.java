@@ -26,19 +26,19 @@ public class Player {
         return name;
     }
 
-    public int age() {
+    public int getAge() {
         return age;
     }
 
-    public City city() {
+    public City getCity() {
         return city;
     }
 
-    public void add(int goldCoins) {
+    public void addGold(int goldCoins) {
         gold+= (goldCoins);
     }
 
-    public void add(Set<Card> cards) {
+    public void addCards(Set<Card> cards) {
         this.cards = this.cards.addAll(cards);
     }
 
@@ -46,7 +46,7 @@ public class Player {
         cards = cards.add(card);
     }
 
-    public int gold() {
+    public int getGold() {
         return gold;
     }
 
@@ -55,7 +55,7 @@ public class Player {
     }
 
     private boolean canBuildDistrict(Card card) {
-        return gold >=(card.district().cost()) && !city.has(card.district());
+        return gold >=(card.getDistrict().getCost()) && !city.has(card.getDistrict());
     }
 
     public Set<Card> buildableDistrictsInHand() {
@@ -68,7 +68,7 @@ public class Player {
         }
         cards = cards.remove(card);
         city.buildDistrict(card);
-        gold -= (card.district().cost());
+        gold -= (card.getDistrict().getCost());
     }
 
     public int score() {
@@ -81,7 +81,7 @@ public class Player {
         otherPlayer.cards = swappingHand;
     }
 
-    public Set<Card> cards() {
+    public Set<Card> getCards() {
         return cards;
     }
 

@@ -83,7 +83,7 @@ public enum Card {
 
     private final District district;
 
-    public District district() {
+    public District getDistrict() {
         return district;
     }
 

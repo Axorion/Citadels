@@ -6,7 +6,7 @@ public class DestructibleDistrict {
         this.destructionCost = destructionCost;
     }
 
-    public Card card() {
+    public Card getCard() {
         return card;
     }
 

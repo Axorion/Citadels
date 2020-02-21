@@ -53,11 +53,11 @@ public enum District {
         this.effect = effect;
     }
 
-    public final int cost() {
+    public final int getCost() {
         return cost;
     }
 
-    public final DistrictType districtType() {
+    public final DistrictType getDistrictType() {
         return districtType;
     }
 

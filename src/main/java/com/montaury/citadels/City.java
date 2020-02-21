@@ -52,8 +52,8 @@ public class City {
 
     public int calculCoutDistricts(){
         int cout = 0;
-        for (int district = 0; district < districts().size(); district++) {
-            cout += districts().get(district).cost();
+        for (int district = 0; district < getDistricts().size(); district++) {
+            cout += getDistricts().get(district).getCost();
         }
         return cout;
     }
@@ -76,7 +76,7 @@ public class City {
 
     private int districtsScoreBonus(Possession possession) {
         int score = 0;
-        for (District d : districts()) {
+        for (District d : getDistricts()) {
             if (d == District.DRAGON_GATE) {
                 score += 2;
             }
@@ -95,8 +95,8 @@ public class City {
 
     private boolean winsAllColorBonus() {
         int districtTypes[] = new int[DistrictType.values().length];
-        for (District d : districts()) {
-            districtTypes[d.districtType().ordinal()]++;
+        for (District d : getDistricts()) {
+            districtTypes[d.getDistrictType().ordinal()]++;
         }
         if (districtTypes[DistrictType.MILITARY.ordinal()] > 0 && districtTypes[DistrictType.NOBLE.ordinal()] > 0 && districtTypes[DistrictType.RELIGIOUS.ordinal()] > 0 && districtTypes[DistrictType.SPECIAL.ordinal()] > 0 && districtTypes[DistrictType.TRADE.ordinal()] > 0)
             return true;
@@ -116,7 +116,7 @@ public class City {
     }
 
     public boolean has(District district) {
-        return districts().contains(district);
+        return getDistricts().contains(district);
     }
 
     public void destroyDistrict(Card card) {
@@ -127,16 +127,16 @@ public class City {
         return isComplete() ?
                 List.empty() :
                 districtCards
-                        .filter(card -> card.district().isDestructible())
+                        .filter(card -> card.getDistrict().isDestructible())
                         .filter(card -> player.canAfford(destructionCost(card)))
                         .map(card -> new DestructibleDistrict(card, destructionCost(card)));
     }
 
     private int destructionCost(Card card) {
-        return card.district().cost() - (has(GREAT_WALL) && card.district() != GREAT_WALL ? 0 : (1));
+        return card.getDistrict().getCost() - (has(GREAT_WALL) && card.getDistrict() != GREAT_WALL ? 0 : (1));
     }
 
-    public List<District> districts() {
-        return districtCards.map(Card::district);
+    public List<District> getDistricts() {
+        return districtCards.map(Card::getDistrict);
     }
 }

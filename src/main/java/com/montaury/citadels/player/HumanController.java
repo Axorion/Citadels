@@ -7,7 +7,6 @@ import io.vavr.Tuple2;
 import io.vavr.collection.*;
 
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class HumanController implements PlayerController {
 
@@ -80,7 +79,7 @@ public class HumanController implements PlayerController {
         for (Tuple2<Player, List<DestructibleDistrict>> jq : playersDistricts) {
             System.out.println(jq._1.name());
             for (DestructibleDistrict destructibleDistrict : jq._2) {
-                System.out.println(destructibleDistrict.card() + " (" + i++ + ")");
+                System.out.println(destructibleDistrict.getCard() + " (" + i++ + ")");
             }
         }
         return orderedDestructibleDistricts.get(scanner.nextInt());

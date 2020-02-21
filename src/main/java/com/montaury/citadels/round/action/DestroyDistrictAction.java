@@ -2,7 +2,6 @@ package com.montaury.citadels.round.action;
 
 import com.montaury.citadels.character.Character;
 import com.montaury.citadels.district.DestructibleDistrict;
-import com.montaury.citadels.district.District;
 import com.montaury.citadels.player.Player;
 import com.montaury.citadels.round.GameRoundAssociations;
 import com.montaury.citadels.round.Group;
@@ -16,7 +15,7 @@ public class DestroyDistrictAction {
         Map<Player, List<DestructibleDistrict>> destructibles = HashMap.empty();
         for (Group group : associations.associations) {
             if (group.isNot(Character.BISHOP) || group.isMurdered()) {
-                destructibles = destructibles.put(group.player(), group.player().city().districtsDestructibleBy(player));
+                destructibles = destructibles.put(group.getPlayer(), group.getPlayer().getCity().districtsDestructibleBy(player));
             }
         }
         return destructibles;

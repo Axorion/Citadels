@@ -254,7 +254,7 @@ public class CityTest {
 
         int actualValue = secondCity.calculScore(possession);
 
-        // AND BONUS : +2 (cards in hand)
+        // AND BONUS : +2 (getCards in hand)
         int expectedValue = 7;
 
         assertThat(actualValue).isEqualTo(expectedValue);
