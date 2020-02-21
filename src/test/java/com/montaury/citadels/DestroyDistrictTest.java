@@ -39,6 +39,7 @@ public class DestroyDistrictTest {
         board = new Board();
         firstCity = new City(board);
         player1 = new Player("guigeek",8,firstCity,null);
+        player1.add(50);
 
 
         firstCity.buildDistrict(CHURCH_1);// COST TO DESTROY = 1
@@ -49,6 +50,9 @@ public class DestroyDistrictTest {
     public void destroy_1_district() {
         firstCity.destroyDistrict(CHURCH_1);
         assertThat(firstCity.getDistrictCards().size()).isEqualTo(1);
+
+        player1.pay(firstCity.getDistrictCards().length());
+        assertThat(player1.gold()).isEqualTo(49);
     }
 
 
