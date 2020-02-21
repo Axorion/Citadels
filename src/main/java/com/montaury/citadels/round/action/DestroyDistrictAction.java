@@ -2,6 +2,7 @@ package com.montaury.citadels.round.action;
 
 import com.montaury.citadels.character.Character;
 import com.montaury.citadels.district.DestructibleDistrict;
+import com.montaury.citadels.district.District;
 import com.montaury.citadels.player.Player;
 import com.montaury.citadels.round.GameRoundAssociations;
 import com.montaury.citadels.round.Group;
@@ -20,4 +21,10 @@ public class DestroyDistrictAction {
         }
         return destructibles;
     }
+
+   /* public static Map<Player, District> youWantToDestroyDistrict(Map<Player, List<DestructibleDistrict>> association){
+
+
+    }*/
+
 }

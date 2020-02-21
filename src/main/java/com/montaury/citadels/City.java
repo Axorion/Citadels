@@ -15,6 +15,10 @@ public class City {
     private final Board board;
     private List<Card> districtCards = List.empty();
 
+    public List<Card> getDistrictCards(){
+        return districtCards;
+    }
+
     public City(Board board) {
         this.board = board;
     }
