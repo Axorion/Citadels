@@ -13,10 +13,6 @@ public class Player {
     public final PlayerController controller;
     private int gold;
     public Set<Card> cards = HashSet.empty();
-    // is the player a computer ?
-    public boolean computer = false;
-    // is the player human ?
-    public boolean human = false;
 
     public Player(String name, int age, City city, PlayerController controller) {
         this.name = name;
