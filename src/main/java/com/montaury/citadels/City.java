@@ -29,6 +29,15 @@ public class City {
             board.mark(this);
         }
     }
+	
+	public void buildDistricts(List<Card> cards) {
+        for (Card card : cards) {
+            districtCards = districtCards.append(card);
+        }
+        if (isComplete()) {
+            board.mark(this);
+        }
+    }
 
     public boolean isComplete() {
         return districtCards.size() >= END_GAME_DISTRICT_NUMBER;

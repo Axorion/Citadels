@@ -8,6 +8,7 @@ import io.vavr.collection.HashMap;
 import io.vavr.collection.HashSet;
 
 
+import io.vavr.collection.List;
 import io.vavr.collection.Set;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,13 +33,14 @@ public class CityTest {
     public void first_to_end_with_7_districts(){
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
-        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
-        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        firstCity.buildDistrict(PALACE_1); //NOBLE - 5
-        firstCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
-        firstCity.buildDistrict(BATTLEFIELD_1); //MILITARY - 3
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, PRISON_1, CASTLE_1, PALACE_1, WATCHTOWER_1, BATTLEFIELD_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // PRISON_1 -> MILITARY - 2
+        // CASTLE_1 -> NOBLE - 4
+        // PALACE_1 -> NOBLE - 5
+        // WATCHTOWER_1 -> MILITARY - 1
+        // BATTLEFIELD_1 -> MILITARY - 3
         //end Value : 23
 
         int actualValue = firstCity.calculScore(possession);
@@ -53,14 +55,15 @@ public class CityTest {
     public void first_to_end_with_8_districts(){
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
-        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
-        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        firstCity.buildDistrict(PALACE_1); //NOBLE - 5
-        firstCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
-        firstCity.buildDistrict(BATTLEFIELD_1); //MILITARY - 3
-        firstCity.buildDistrict(DOCKS_1); //TRADE - 3
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, PRISON_1, CASTLE_1, PALACE_1, WATCHTOWER_1, BATTLEFIELD_1, DOCKS_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // PRISON_1 -> MILITARY - 2
+        // CASTLE_1 -> NOBLE - 4
+        // PALACE_1 -> NOBLE - 5
+        // WATCHTOWER_1 -> MILITARY - 1
+        // BATTLEFIELD_1 -> MILITARY - 3
+        // DOCKS_1 -> TRADE - 3
         //end Value : 26
 
         int actualValue = firstCity.calculScore(possession);
@@ -75,13 +78,14 @@ public class CityTest {
     public void first_to_end_with_7_districts_and_5_differents_districts(){
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
-        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        firstCity.buildDistrict(TAVERN_1); //TRADE - 1
-        firstCity.buildDistrict(TEMPLE_1); //RELIGIOUS - 1
-        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
-        firstCity.buildDistrict(KEEP_1); //SPECIAL - 3
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
         //end Value : 19
 
         int actualValue = firstCity.calculScore(possession);
@@ -96,14 +100,15 @@ public class CityTest {
     public void first_to_end_with_8_districts_and_5_differents_districts(){
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1); //NOBLE - 3
-        firstCity.buildDistrict(FORTRESS_1); //MILITARY - 5
-        firstCity.buildDistrict(TAVERN_1); //TRADE - 1
-        firstCity.buildDistrict(TEMPLE_1); //RELIGIOUS - 1
-        firstCity.buildDistrict(CASTLE_1); //NOBLE - 4
-        firstCity.buildDistrict(PRISON_1); //MILITARY - 2
-        firstCity.buildDistrict(KEEP_1); //SPECIAL - 3
-        firstCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1, WATCHTOWER_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
+        // WATCHTOWER_1 -> MILITARY - 1
         //end Value : 20
 
         int actualValue = firstCity.calculScore(possession);
@@ -119,21 +124,23 @@ public class CityTest {
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1);
-        firstCity.buildDistrict(FORTRESS_1);
-        firstCity.buildDistrict(TAVERN_1);
-        firstCity.buildDistrict(TEMPLE_1);
-        firstCity.buildDistrict(CASTLE_1);
-        firstCity.buildDistrict(PRISON_1);
-        firstCity.buildDistrict(KEEP_1);
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
 
-        secondCity.buildDistrict(MANOR_2); //NOBLE - 3
-        secondCity.buildDistrict(FORTRESS_2); //MILITARY - 5
-        secondCity.buildDistrict(PRISON_2); //MILITARY - 2
-        secondCity.buildDistrict(CASTLE_2); //NOBLE - 4
-        secondCity.buildDistrict(WATCHTOWER_1); //MILITARY - 1
-        secondCity.buildDistrict(BATTLEFIELD_1); //MILITARY - 3
-        secondCity.buildDistrict(DOCKS_1); //TRADE - 3
+        secondCity.buildDistricts(List.of(MANOR_2, FORTRESS_2, PRISON_2, CASTLE_2, WATCHTOWER_1, BATTLEFIELD_1, DOCKS_1));
+        // MANOR_2 -> NOBLE - 3
+        // FORTRESS_2 -> MILITARY - 5
+        // PRISON_2 -> MILITARY - 2
+        // CASTLE_2 -> NOBLE - 4
+        // WATCHTOWER_1 -> MILITARY - 1
+        // BATTLEFIELD_1 -> MILITARY - 3
+        // DOCKS_1 -> TRADE - 3
         //end Value : 21
 
         int actualValue = secondCity.calculScore(possession);
@@ -149,19 +156,21 @@ public class CityTest {
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1);
-        firstCity.buildDistrict(FORTRESS_1);
-        firstCity.buildDistrict(TAVERN_1);
-        firstCity.buildDistrict(TEMPLE_1);
-        firstCity.buildDistrict(CASTLE_1);
-        firstCity.buildDistrict(PRISON_1);
-        firstCity.buildDistrict(KEEP_1);
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
 
-        secondCity.buildDistrict(MANOR_2); //NOBLE - 3
-        secondCity.buildDistrict(FORTRESS_2); //MILITARY - 5
-        secondCity.buildDistrict(TAVERN_1); //TRADE - 1
-        secondCity.buildDistrict(TEMPLE_1); //RELIGIOUS - 1
-        secondCity.buildDistrict(KEEP_1); //SPECIAL - 3
+        secondCity.buildDistricts(List.of(MANOR_2, FORTRESS_2, TAVERN_1, TEMPLE_1, KEEP_1));
+        // MANOR_2 -> NOBLE - 3
+        // FORTRESS_2 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // KEEP_1 -> SPECIAL - 3
         //end Value : 13
 
         int actualValue = secondCity.calculScore(possession);
@@ -177,13 +186,14 @@ public class CityTest {
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1);
-        firstCity.buildDistrict(FORTRESS_1);
-        firstCity.buildDistrict(TAVERN_1);
-        firstCity.buildDistrict(TEMPLE_1);
-        firstCity.buildDistrict(CASTLE_1);
-        firstCity.buildDistrict(PRISON_1);
-        firstCity.buildDistrict(KEEP_1);
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
 
         secondCity.buildDistrict(DRAGON_GATE); //SPECIAL - 6
         //end Value : 6
@@ -201,13 +211,14 @@ public class CityTest {
         City secondCity = new City(board);
         Possession possession= new Possession(0,null);
 
-        firstCity.buildDistrict(MANOR_1);
-        firstCity.buildDistrict(FORTRESS_1);
-        firstCity.buildDistrict(TAVERN_1);
-        firstCity.buildDistrict(TEMPLE_1);
-        firstCity.buildDistrict(CASTLE_1);
-        firstCity.buildDistrict(PRISON_1);
-        firstCity.buildDistrict(KEEP_1);
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
 
         secondCity.buildDistrict(UNIVERSITY); //SPECIAL - 6
         //end Value : 6
@@ -229,13 +240,14 @@ public class CityTest {
 
         Possession possession= new Possession(0,testHand);
 
-        firstCity.buildDistrict(MANOR_1);
-        firstCity.buildDistrict(FORTRESS_1);
-        firstCity.buildDistrict(TAVERN_1);
-        firstCity.buildDistrict(TEMPLE_1);
-        firstCity.buildDistrict(CASTLE_1);
-        firstCity.buildDistrict(PRISON_1);
-        firstCity.buildDistrict(KEEP_1);
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
 
         secondCity.buildDistrict(MAP_ROOM); //SPECIAL - 5
         //end Value : 5
@@ -254,16 +266,18 @@ public class CityTest {
         City secondCity = new City(board);
         Possession possession= new Possession(5,null);
 
-        firstCity.buildDistrict(MANOR_1);
-        firstCity.buildDistrict(FORTRESS_1);
-        firstCity.buildDistrict(TAVERN_1);
-        firstCity.buildDistrict(TEMPLE_1);
-        firstCity.buildDistrict(CASTLE_1);
-        firstCity.buildDistrict(PRISON_1);
-        firstCity.buildDistrict(KEEP_1);
+        firstCity.buildDistricts(List.of(MANOR_1, FORTRESS_1, TAVERN_1, TEMPLE_1, CASTLE_1, PRISON_1, KEEP_1));
+        // MANOR_1 -> NOBLE - 3
+        // FORTRESS_1 -> MILITARY - 5
+        // TAVERN_1 -> TRADE - 1
+        // TEMPLE_1 -> RELIGIOUS - 1
+        // CASTLE_1 -> NOBLE - 4
+        // PRISON_1 -> MILITARY - 2
+        // KEEP_1 -> SPECIAL - 3
 
-        secondCity.buildDistrict(PRISON_2); //MILITARY - 2
-        secondCity.buildDistrict(TREASURY); //SPECIAL - 5
+        secondCity.buildDistricts(List.of(PRISON_2, TREASURY));
+        // PRISON_2 -> MILITARY - 2
+        // TREASURY -> SPECIAL - 5
         //end Value : 7
 
         int actualValue = secondCity.calculScore(possession);
