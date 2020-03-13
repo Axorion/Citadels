@@ -153,8 +153,16 @@ public class Citadels {
                                 actionType11 = actionChoisie;
                                 availableActions11 = availableActions11.remove(actionType11);
                             }
-                            while (!availableActions11.isEmpty() && actionType11 != ActionType.END_ROUND && actionType11.getAction().canEndRound()==false);
+                            while (!availableActions11.isEmpty() && actionType11 != ActionType.END_ROUND && actionType11.getAction().canEndRound(group, pioche, groups)==false);
+                            //Traitements relatifs aux nouvelles cartes
+                            if(group.getPlayer().getCity().has(District.PARC) && group.getPlayer().getCards().isEmpty()){
+                                ActionType.PICK_2_CARDS.getAction().executeAction(group, pioche, groups);
+                            }
+                            if(group.getPlayer().getCity().has(District.HOSPICE) && group.getPlayer().getGold() == 0){
+                                ActionType.RECEIVE_1_COIN.getAction().executeAction(group, pioche, groups);
+                            }
                         }
+
                     }
                 }
             }

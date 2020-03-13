@@ -6,11 +6,11 @@ import com.montaury.citadels.round.Group;
 
 public interface Action {
 
-    public void executeAction(Group group, CardPile pioche,GameRoundAssociations groups);
+    void executeAction(Group group, CardPile pioche,GameRoundAssociations groups);
 
-    public boolean canBeExecuted(Group group, CardPile pioche,GameRoundAssociations groups);
+    boolean canBeExecuted(Group group, CardPile pioche,GameRoundAssociations groups);
 
-    public boolean canEndRound(Group group, CardPile pioche,GameRoundAssociations groups){
+    default boolean canEndRound(Group group, CardPile pioche,GameRoundAssociations groups){
         return false;
     }
 }

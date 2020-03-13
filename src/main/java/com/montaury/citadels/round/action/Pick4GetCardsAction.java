@@ -1,6 +1,5 @@
 package com.montaury.citadels.round.action;
 
-package com.montaury.citadels.round.action;
 
 import com.montaury.citadels.CardPile;
 import com.montaury.citadels.round.GameRoundAssociations;
