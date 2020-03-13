@@ -14,7 +14,9 @@ public enum Character {
     BISHOP(5, "Bishop", List.of(ActionType.RECEIVE_INCOME), DistrictType.RELIGIOUS),
     MERCHANT(6, "Merchant", List.of(ActionType.RECEIVE_INCOME, ActionType.RECEIVE_1_COIN), DistrictType.TRADE),
     ARCHITECT(7, "Architect", List.of(ActionType.PICK_2_CARDS, ActionType.BUILD_DISTRICT, ActionType.BUILD_DISTRICT)),
+    NAVIGATEUR(7,"Navigateur", List.of(ActionType.PICK_4_CARDS, ActionType.RECEIVE_4_COIN)),
     WARLORD(8, "Warlord", List.of(ActionType.RECEIVE_INCOME, ActionType.DESTROY_DISTRICT), DistrictType.MILITARY);
+
 
     Character(int number, String name, List<ActionType> powers)
     {

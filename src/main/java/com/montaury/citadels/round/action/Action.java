@@ -9,4 +9,8 @@ public interface Action {
     public void executeAction(Group group, CardPile pioche,GameRoundAssociations groups);
 
     public boolean canBeExecuted(Group group, CardPile pioche,GameRoundAssociations groups);
+
+    public boolean canEndRound(Group group, CardPile pioche,GameRoundAssociations groups){
+        return false;
+    }
 }

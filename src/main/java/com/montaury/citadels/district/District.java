@@ -41,7 +41,11 @@ public enum District {
     MAGIC_SCHOOL(6, SPECIAL), // Pour la perception des revenus, l'école de Magie est considérée comme un quartier de la couleur de votre choix. Elle vous rapporte donc si vous êtes Roi, Eveque, Marchand ou Condottiere
     LABORATORY(5, SPECIAL), // Une fois par tour, vous pouvez défausser 1 carte et recevoir 2 pièces d'or
     GREAT_WALL(6, SPECIAL), // Le prix à payer par le Condottiere pour détruire vos autres quartiers est augmenté de 1
-    KEEP(3, SPECIAL, Effect.indestructible()); // Le donjon ne peut pas être détruit par le Condottiere
+    KEEP(3, SPECIAL, Effect.indestructible()), // Le donjon ne peut pas être détruit par le Condottiere
+    PARC(4, SPECIAL), // Si vous n'avez aucune carte en main à la fin de votre tour, piochez 2 cartes
+    HOSPICE(5, SPECIAL); // Si vous n'avez aucune pièce d'or à la fin de votre tour, vous en recevez 1 de la banque.
+    //FABRIQUE(4, SPECIAL); // Le coût que vous devez payer pour poser d'autres quartiers violets dans votre cité est réduit de 1.
+
 
     District(int cost, DistrictType districtType) {
         this(cost, districtType, Effect.none());

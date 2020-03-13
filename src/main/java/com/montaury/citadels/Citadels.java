@@ -153,7 +153,7 @@ public class Citadels {
                                 actionType11 = actionChoisie;
                                 availableActions11 = availableActions11.remove(actionType11);
                             }
-                            while (!availableActions11.isEmpty() && actionType11 != ActionType.END_ROUND);
+                            while (!availableActions11.isEmpty() && actionType11 != ActionType.END_ROUND && actionType11.getAction().canEndRound()==false);
                         }
                     }
                 }

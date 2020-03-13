@@ -15,7 +15,11 @@ public enum ActionType {
     RECEIVE_1_COIN("Receive 1 coin", new Receive1CoinAction()),
     RECEIVE_2_COIN("Receive 2 coin", new Receive2CoinsAction()),
     RECEIVE_INCOME("Receive income", new ReceiveIncomeAction()),
-    ROB_ACTION("Rob", new RobAction());
+    ROB_ACTION("Rob", new RobAction()),
+    PICK_4_CARDS("Navigateur", new Pick4GetCardsAction()),
+    RECEIVE_4_COIN("Navigateur", new Receive4CoinsAction());
+
+
 
 
     ActionType(String name, Action action) {

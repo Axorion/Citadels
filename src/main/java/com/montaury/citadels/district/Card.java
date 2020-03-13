@@ -75,7 +75,12 @@ public enum Card {
     LABORATORY(District.LABORATORY),
     GREAT_WALL(District.GREAT_WALL),
     KEEP_1(District.KEEP),
-    KEEP_2(District.KEEP);
+    KEEP_2(District.KEEP),
+    PARC(District.PARC),
+    HOSPICE(District.HOSPICE);
+    //FABRIQUE(District.FABRIQUE);
+
+
 
     Card(District district) {
         this.district = district;
