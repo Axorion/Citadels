@@ -9,6 +9,7 @@ public class Receive4CoinsAction implements Action{
     public void executeAction(Group group, CardPile pioche, GameRoundAssociations groups)
     {
         group.getPlayer().addGold(4);
+
     }
 
     @Override

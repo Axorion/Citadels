@@ -1,6 +1,9 @@
 package com.montaury.citadels.district;
 
+import com.montaury.citadels.round.action.Action;
+import com.montaury.citadels.round.action.ActionType;
 import io.vavr.collection.HashSet;
+import io.vavr.collection.List;
 import io.vavr.collection.Set;
 
 public enum Card {
@@ -86,8 +89,6 @@ public enum Card {
         this.district = district;
     }
 
-    private final District district;
-
     public District getDistrict() {
         return district;
     }
@@ -95,4 +96,6 @@ public enum Card {
     public static Set<Card> all() {
         return HashSet.of(values());
     }
+
+    private final District district;
 }

@@ -23,28 +23,46 @@ import java.util.Scanner;
 public class Citadels {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Hello! Quel est votre nom ? ");
         String playerName = scanner.next();
+
         System.out.println("Quel est votre age ? ");
         int playerAge = scanner.nextInt();
+
         Board board = new Board();
         Player p = new Player(playerName, playerAge, new City(board), new HumanController());
         List<Player> players = List.of(p);
-        System.out.println("Saisir le nombre de joueurs total (entre 2 et 8): ");
+
         int nbP;
         do {
+            System.out.println("Saisir le nombre de joueurs total (entre 2 et 8): ");
             nbP = scanner.nextInt();
         } while (nbP < 2 || nbP > 8);
-        for (int joueurs = 0; joueurs < nbP; joueurs += 1) {
+
+        for (int joueurs = 1; joueurs < nbP; joueurs ++) {
             Player player = new Player("Computer " + joueurs, 35, new City(board), new ComputerController());
             players = players.append(player);
         }
+
         CardPile pioche = new CardPile(Card.all().toList().shuffle());
+
         players.forEach(player -> {
             player.addGold(2);
             player.addCards(pioche.draw(2));
         });
         Player crown = players.maxBy(Player::getAge).get();
+
+        String answer;
+        List<Character> characterOfTheGame = List.of(Character.ASSASSIN, Character.THIEF, Character.MAGICIAN, Character.KING, Character.BISHOP, Character.MERCHANT, Character.WARLORD);
+        System.out.println("Voulez-vous remplacer l'ARTCHITECTE par le NAVIGUATEUR ? (oui/non) ");
+        answer = scanner.next();
+        if (answer == "oui" || answer == "Oui"){
+            characterOfTheGame.push(Character.NAVIGATEUR);
+        }
+        else {
+            characterOfTheGame.push(Character.ARCHITECT);
+        }
 
         List<Group> roundAssociations;
         do {
@@ -52,7 +70,7 @@ public class Citadels {
             Collections.rotate(list, -players.indexOf(crown));
             List<Player> playersInOrder = List.ofAll(list);
             RandomCharacterSelector randomCharacterSelector = new RandomCharacterSelector();
-            List<Character> availableCharacters = List.of(Character.ASSASSIN, Character.THIEF, Character.MAGICIAN, Character.KING, Character.BISHOP, Character.MERCHANT, Character.ARCHITECT, Character.WARLORD);
+            List<Character> availableCharacters = characterOfTheGame;
 
             List<Character> availableCharacters1 = availableCharacters;
             List<Character> discardedCharacters = List.empty();
@@ -102,7 +120,6 @@ public class Citadels {
                             }
                             // keep only actions that getPlayer can realize
 
-///////////////////////
                             List<ActionType> possibleActions = List.empty();
                             for (ActionType actionType : availableActions) {
                                 if (actionType.getAction().canBeExecuted(group, pioche, groups))
@@ -139,7 +156,6 @@ public class Citadels {
                                 Set<ActionType> availableActions1 = availableActions11;
                                 // keep only actions that getPlayer can realize
 
-///////////////////////
                                 List<ActionType> possibleActions2 = List.empty();
                                 for (ActionType actionType : availableActions1) {
                                     if (actionType.getAction().canBeExecuted(group, pioche, groups))

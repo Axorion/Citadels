@@ -16,8 +16,8 @@ public enum ActionType {
     RECEIVE_2_COIN("Receive 2 coin", new Receive2CoinsAction()),
     RECEIVE_INCOME("Receive income", new ReceiveIncomeAction()),
     ROB_ACTION("Rob", new RobAction()),
-    PICK_4_CARDS("Navigateur", new Pick4GetCardsAction()),
-    RECEIVE_4_COIN("Navigateur", new Receive4CoinsAction());
+    PICK_4_CARDS("Pick 4 cards and end turn", new Pick4GetCardsAction()),
+    RECEIVE_4_COIN("Receive 4 coins and end turn", new Receive4CoinsAction());
 
 
 
