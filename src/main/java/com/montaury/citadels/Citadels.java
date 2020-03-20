@@ -2,10 +2,10 @@ package com.montaury.citadels;
 
 import com.montaury.citadels.character.Character;
 
+import com.montaury.citadels.character.InGameCharacters;
 import com.montaury.citadels.character.RandomCharacterSelector;
 import com.montaury.citadels.district.Card;
 import com.montaury.citadels.district.District;
-import com.montaury.citadels.district.DistrictType;
 import com.montaury.citadels.player.ComputerController;
 import com.montaury.citadels.player.HumanController;
 import com.montaury.citadels.player.Player;
@@ -23,55 +23,66 @@ import java.util.Scanner;
 public class Citadels {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+    //name choice
         System.out.println("Hello! Quel est votre nom ? ");
         String playerName = scanner.next();
 
+    //year old choice
         System.out.println("Quel est votre age ? ");
         int playerAge = scanner.nextInt();
 
+    //player with city creation
         Board board = new Board();
         Player p = new Player(playerName, playerAge, new City(board), new HumanController());
         List<Player> players = List.of(p);
 
+    //numbers of players choice
         int nbP;
         do {
             System.out.println("Saisir le nombre de joueurs total (entre 2 et 8): ");
             nbP = scanner.nextInt();
         } while (nbP < 2 || nbP > 8);
 
+    //computers/bots creation
         for (int joueurs = 1; joueurs < nbP; joueurs ++) {
             Player player = new Player("Computer " + joueurs, 35, new City(board), new ComputerController());
             players = players.append(player);
         }
 
+    //pioche creation
         CardPile pioche = new CardPile(Card.all().toList().shuffle());
 
+    //inits of the game ( possession, crown)
         players.forEach(player -> {
             player.addGold(2);
             player.addCards(pioche.draw(2));
         });
         Player crown = players.maxBy(Player::getAge).get();
 
+    //Navigateur or Architect choice
+        InGameCharacters characterOfTheGame;
         String answer;
-        List<Character> characterOfTheGame = List.of(Character.ASSASSIN, Character.THIEF, Character.MAGICIAN, Character.KING, Character.BISHOP, Character.MERCHANT, Character.WARLORD);
         System.out.println("Voulez-vous remplacer l'ARTCHITECTE par le NAVIGUATEUR ? (oui/non) ");
         answer = scanner.next();
-        if (answer == "oui" || answer == "Oui"){
-            characterOfTheGame.push(Character.NAVIGATEUR);
+        if (answer.equals("oui") || answer.equals("Oui")){
+            characterOfTheGame = new InGameCharacters(List.of(Character.ASSASSIN, Character.THIEF, Character.MAGICIAN, Character.KING, Character.BISHOP, Character.MERCHANT, Character.NAVIGATEUR, Character.WARLORD));
         }
         else {
-            characterOfTheGame.push(Character.ARCHITECT);
+            characterOfTheGame = new InGameCharacters(List.of(Character.ASSASSIN, Character.THIEF, Character.MAGICIAN, Character.KING, Character.BISHOP, Character.MERCHANT, Character.ARCHITECT, Character.WARLORD));
         }
 
+
+    //Turn
         List<Group> roundAssociations;
         do {
+        //Character creation
             java.util.List<Player> list = players.asJavaMutable();
             Collections.rotate(list, -players.indexOf(crown));
             List<Player> playersInOrder = List.ofAll(list);
             RandomCharacterSelector randomCharacterSelector = new RandomCharacterSelector();
-            List<Character> availableCharacters = characterOfTheGame;
+            List<Character> availableCharacters = characterOfTheGame.getInGameCharacters();
 
+        // discard
             List<Character> availableCharacters1 = availableCharacters;
             List<Character> discardedCharacters = List.empty();
             for (int i = 0; i < 1; i++) {
@@ -81,6 +92,7 @@ public class Citadels {
             }
             Character faceDownDiscardedCharacter = discardedCharacters.head();
             availableCharacters = availableCharacters.remove(faceDownDiscardedCharacter);
+
 
             List<Character> availableCharacters11 = availableCharacters.remove(Character.KING);
             List<Character> discardedCharacters1 = List.empty();
@@ -92,6 +104,7 @@ public class Citadels {
             List<Character> faceUpDiscardedCharacters = discardedCharacters1;
             availableCharacters = availableCharacters.removeAll(faceUpDiscardedCharacters);
 
+        //Character Choice
             List<Group> associations1 = List.empty();
             for (Player player : playersInOrder) {
                 System.out.println(player.name() + " doit choisir un personnage");
@@ -126,16 +139,15 @@ public class Citadels {
                                     possibleActions = possibleActions.append(actionType);
                             }
 
-                            // execute selected action
-
+                        // execute selected action
                             ActionType chosenAction = group.getPlayer().controller.selectActionAmong(possibleActions.toList());
-                            chosenAction.getAction().executeAction(group, pioche, groups);
+                            chosenAction.getAction().executeAction(group, pioche, groups, characterOfTheGame);
                             actionExecuted(group, chosenAction, associations);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            // receive powers from the getCharacter
+                        // receive powers from the getCharacter
                             List<ActionType> powers = group.getCharacter().getPowers();
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                        //Add extra Actions
                             List<ActionType>  extraActions = List.empty();
                             for (District d : group.getPlayer().getCity().getDistricts()) {
                                 if (d == District.SMITHY) {
@@ -149,13 +161,11 @@ public class Citadels {
                                     .addAll(powers)
                                     .addAll(extraActions);
 
-                            //availableActions11.add(ActionType.END_ROUND);
-
                             ActionType actionType11;
                             do {
                                 Set<ActionType> availableActions1 = availableActions11;
-                                // keep only actions that getPlayer can realize
 
+                            // keep only actions that getPlayer can realize
                                 List<ActionType> possibleActions2 = List.empty();
                                 for (ActionType actionType : availableActions1) {
                                     if (actionType.getAction().canBeExecuted(group, pioche, groups))
@@ -163,19 +173,20 @@ public class Citadels {
                                 }
                                 ActionType actionChoisie = group.getPlayer().controller.selectActionAmong(possibleActions2.toList());
 
-                                // execute selected action
-                                actionChoisie.getAction().executeAction(group,pioche,groups);
+                            // execute selected action
+                                actionChoisie.getAction().executeAction(group,pioche,groups, characterOfTheGame);
                                 actionExecuted(group, actionChoisie, associations);
                                 actionType11 = actionChoisie;
                                 availableActions11 = availableActions11.remove(actionType11);
                             }
                             while (!availableActions11.isEmpty() && actionType11 != ActionType.END_ROUND && actionType11.getAction().canEndRound(group, pioche, groups)==false);
-                            //Traitements relatifs aux nouvelles cartes
+
+                        //new Cards operations
                             if(group.getPlayer().getCity().has(District.PARC) && group.getPlayer().getCards().isEmpty()){
-                                ActionType.PICK_2_CARDS.getAction().executeAction(group, pioche, groups);
+                                ActionType.PICK_2_CARDS.getAction().executeAction(group, pioche, groups, characterOfTheGame);
                             }
                             if(group.getPlayer().getCity().has(District.HOSPICE) && group.getPlayer().getGold() == 0){
-                                ActionType.RECEIVE_1_COIN.getAction().executeAction(group, pioche, groups);
+                                ActionType.RECEIVE_1_COIN.getAction().executeAction(group, pioche, groups, characterOfTheGame);
                             }
                         }
 

@@ -8,6 +8,7 @@ import com.montaury.citadels.round.Group;
 import io.vavr.collection.HashMap;
 import io.vavr.collection.List;
 import io.vavr.collection.Map;
+import com.montaury.citadels.character.InGameCharacters;
 
 public class DestroyDistrict {
 
@@ -20,10 +21,5 @@ public class DestroyDistrict {
         }
         return destructibles;
     }
-
-   /* public static Map<Player, District> youWantToDestroyDistrict(Map<Player, List<DestructibleDistrict>> association){
-
-
-    }*/
 
 }
